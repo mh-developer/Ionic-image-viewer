@@ -1,0 +1,7 @@
+{
+  "name": "Vue-image-viewer",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
