@@ -3,17 +3,43 @@
     <ion-app>
       <ion-header>
         <ion-toolbar color="primary">
-          <ion-title>Ionic Image Zooming</ion-title>
+          <ion-title>Video nadzorni sistem</ion-title>
           <!-- <router-link to="/">Home</router-link>|
           <router-link to="/about">About</router-link>-->
         </ion-toolbar>
       </ion-header>
       <ion-content padding>
-        <router-view />
+        <ion-refresher slot="fixed" @ionRefresh="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+
+        <router-view v-if="isRouterAlive" />
       </ion-content>
     </ion-app>
   </div>
 </template>
+
+<script>
+/* eslint-disable */
+export default {
+  data() {
+    return {
+      isRouterAlive: true
+    };
+  },
+  methods: {
+    doRefresh(event) {
+      this.isRouterAlive = false
+
+      setTimeout(() => {
+        this.isRouterAlive = true
+        event.target.complete();
+      }, 500);
+    }
+  }
+};
+</script>
+
 
 <style>
 #app {
